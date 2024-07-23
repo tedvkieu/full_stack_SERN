@@ -6,7 +6,14 @@ module.exports = {
             {
                 firstName: 'John',
                 lastName: 'Doe',
-                email: 'tedvkieu@gmail.com',
+                email: 'example@example.com',
+                createdAt: new Date(),
+                updatedAt: new Date(),
+            },
+            {
+                firstName: 'John',
+                lastName: 'Doe',
+                email: 'fgdfg@example.com',
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },
