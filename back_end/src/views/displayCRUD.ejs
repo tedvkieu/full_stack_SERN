@@ -1,0 +1,46 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Get ALL User</title>
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td,
+            th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Table USER</h2>
+
+        <table>
+            <tr>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Address</th>
+            </tr>
+
+            <% for(let i = 0; i < data.length; i++){ %>
+            <tr>
+                <td><%= data[i].email %></td>
+                <td><%= data[i].firstName %></td>
+                <td><%= data[i].lastName %></td>
+                <td><%= data[i].address %></td>
+            </tr>
+            <% } %>
+        </table>
+    </body>
+</html>
