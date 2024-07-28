@@ -7,6 +7,7 @@ import {
     displayGetCRUD,
     editCRUD,
     putCRUD,
+    deleteCRUD,
 } from '../controllers/homeController';
 let router = express.Router();
 
@@ -24,6 +25,9 @@ let initWebRoutes = (app) => {
     router.get('/edit-crud', editCRUD);
 
     router.post('/put-crud', putCRUD);
+
+    router.get('/delete-crud', deleteCRUD);
+
 
     return app.use('/', router);
 };
