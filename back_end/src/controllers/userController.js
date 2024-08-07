@@ -19,7 +19,7 @@ const handleLogin = async (req, res) => {
 };
 
 const handleGetAllUser = async (req, res) => {
-    let id = req.body.id;
+    let id = req.query.id;
 
     if (!id) {
         return res.status(200).json({
