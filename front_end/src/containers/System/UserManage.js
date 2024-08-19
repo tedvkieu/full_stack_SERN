@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './UserManage.scss';
-import { getAllUsers, createNewUserService } from '../../services/userService';
+import { emitter } from '../../utils/emitter';
+import {
+    getAllUsers,
+    createNewUserService,
+    deleteUserService,
+} from '../../services/userService';
 import ModalUser from './ModalUser';
 import { isObject } from 'lodash';
 
@@ -49,10 +54,26 @@ class UserManage extends Component {
             } else {
                 await this.getAllUsersFromReact();
                 this.setState({ isOpenModalUser: false });
+                emitter.emit('EVENT_CLEAR_MODAL_DATA');
             }
         } catch (e) {
             console.log(e);
         }
+    };
+
+    handleDeleteUser = async (user) => {
+        try {
+            let response = await deleteUserService(user.id);
+            if (response && response.errCode !== 0) {
+                alert(response.errMessage);
+            } else {
+                await this.getAllUsersFromReact();
+                this.setState({ isOpenModalUser: false });
+            }
+        } catch (e) {
+            console.log(e);
+        }
+        console.log('handle delete user: ', user);
     };
 
     render() {
@@ -101,7 +122,13 @@ class UserManage extends Component {
                                                         className="fas fa-pencil-alt"
                                                         aria-hidden="true"></i>
                                                 </button>
-                                                <button className="btn-delete">
+                                                <button
+                                                    className="btn-delete"
+                                                    onClick={() =>
+                                                        this.handleDeleteUser(
+                                                            item
+                                                        )
+                                                    }>
                                                     <i
                                                         className="fas fa-trash"
                                                         aria-hidden="true"></i>
